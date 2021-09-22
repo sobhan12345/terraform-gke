@@ -13,9 +13,9 @@ spec:
         run: demo
     spec:
       containers:
-      - image: nginx:latest
+      - image: jenkins:latest
         imagePullPolicy: IfNotPresent
         name: demo
         ports:
-        - containerPort: 80
+        - containerPort: 8080
           protocol: TCP

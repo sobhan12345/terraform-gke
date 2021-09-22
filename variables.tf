@@ -3,11 +3,11 @@ variable "name" {
 }
 
 variable "project" {
-  default = "optimum-spring-238818"
+  default = "devops-non-prod"
 }
 
 variable "location" {
-  default = "us-central1"
+  default = "us-east1"
 }
 
 variable "initial_node_count" {
@@ -17,4 +17,6 @@ variable "initial_node_count" {
 variable "machine_type" {
   default = "n1-standard-1"
 }
-
+variable "region"{
+   default = "us-east1"
+}

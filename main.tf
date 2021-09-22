@@ -1,4 +1,9 @@
-resource "google_container_cluster" "default" {
+provider "google" {
+    credentials = file("D:\\ServiceAccounts\\devops-non-prod-239e323b16c6.json")
+    project     = "var.project"
+    region      = "var.region"
+ }
+resource "google_container_cluster" "test" {
   name        = var.name
   project     = var.project
   description = "Demo GKE Cluster"
@@ -8,26 +13,25 @@ resource "google_container_cluster" "default" {
   initial_node_count       = var.initial_node_count
 
   master_auth {
-    username = ""
-    password = ""
+     username = ""
+     password = ""
 
-    client_certificate_config {
-      issue_client_certificate = false
-    }
+     client_certificate_config {
+       issue_client_certificate = false
+     }
   }
 }
-
 resource "google_container_node_pool" "default" {
   name       = "${var.name}-node-pool"
   project    = var.project
   location   = var.location
-  cluster    = google_container_cluster.default.name
+  cluster    = google_container_cluster.test.name
   node_count = 1
 
   node_config {
     preemptible  = true
     machine_type = var.machine_type
-
+    
     metadata = {
       disable-legacy-endpoints = "true"
     }
